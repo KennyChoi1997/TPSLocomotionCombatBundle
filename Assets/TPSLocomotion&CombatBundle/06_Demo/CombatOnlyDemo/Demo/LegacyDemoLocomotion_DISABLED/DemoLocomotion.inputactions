@@ -1,0 +1,57 @@
+{
+    "version": 1,
+    "name": "DemoLocomotion",
+    "maps": [
+        {
+            "name": "DemoMovement",
+            "id": "5b1dd9f8-274a-4a8e-abec-46ee9b3941fd",
+            "actions": [
+                {
+                    "name": "DemoLook",
+                    "type": "Value",
+                    "id": "7d3ea0ed-0943-402c-8fde-be127d28f515",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "75d85688-8b20-4e30-a1ac-3f39338f164b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DemoLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4920fae4-9230-49dd-875b-9dd5647f9753",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DemoLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "225fdea0-8299-4ec4-b873-e61b8ce03da5",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DemoLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

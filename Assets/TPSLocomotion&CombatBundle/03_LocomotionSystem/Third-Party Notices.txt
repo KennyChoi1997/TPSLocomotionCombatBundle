@@ -1,0 +1,21 @@
+Third-Party Notices
+
+This package includes third-party assets used only for demonstration purposes.
+
+Asset Source:
+Kenney (https://kenney.nl)
+
+License:
+Creative Commons CC0 (Public Domain)
+
+Assets included:
+- Character models
+- Animations
+- Textures
+
+Location in package:
+LocomotionSystem/Demo/
+
+These assets are optional and not required for the core locomotion system.
+
+Kenney is not affiliated with or endorsing this product.

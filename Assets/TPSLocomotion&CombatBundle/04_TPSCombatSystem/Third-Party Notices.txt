@@ -1,0 +1,50 @@
+TPS Combat System - Third-Party Notices
+
+This asset includes or references third-party content for demo purposes only.
+These assets are NOT included in the core package unless explicitly stated.
+
+--------------------------------------------------
+Quaternius Universal Animation Library
+--------------------------------------------------
+Author: Quaternius
+Website: https://quaternius.com
+License: CC0 (Public Domain)
+
+Used for:
+- Demo character model
+- Animation clips
+
+No attribution required.
+
+--------------------------------------------------
+Ultimate Guns Pack
+--------------------------------------------------
+Author: Quaternius
+Website: https://quaternius.com
+License: CC0 (Public Domain)
+
+Used for:
+- Demo weapon models
+
+No attribution required.
+
+--------------------------------------------------
+Crosshair Pack
+--------------------------------------------------
+Author: Kenney
+Website: https://kenney.nl/
+License: CC0 (Public Domain)
+
+Used for:
+- Demo crosshair sprite
+
+No attribution required.
+
+--------------------------------------------------
+Notes
+--------------------------------------------------
+All third-party assets are used under their respective licenses.
+
+These assets are used for demonstration purposes only and are not part of the core runtime system.
+
+End of file.
