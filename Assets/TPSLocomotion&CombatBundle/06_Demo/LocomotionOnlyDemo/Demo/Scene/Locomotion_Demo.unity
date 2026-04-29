@@ -3233,6 +3233,14 @@ PrefabInstance:
       propertyPath: _lockOnIndicator
       value: 
       objectReference: {fileID: 1350188077}
+    - target: {fileID: 5171612424697313155, guid: d287304bf934c7445a8d4f94d16d630a, type: 3}
+      propertyPath: _obstacleMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5171612424697313155, guid: d287304bf934c7445a8d4f94d16d630a, type: 3}
+      propertyPath: _cameraCollisionMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6398114286133274622, guid: d287304bf934c7445a8d4f94d16d630a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.4

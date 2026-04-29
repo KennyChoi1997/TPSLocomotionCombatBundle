@@ -323,6 +323,9 @@ namespace TPSCombatSystem.Core
                             direction = aimRay.direction;
                         }
 
+                        return aimRay.direction;
+
+                        /*
                         // Clamp desired camera-based direction so the weapon cannot
                         // fire outside the physically plausible muzzle cone.
                         return ClampDirectionByYawPitch(
@@ -332,6 +335,7 @@ namespace TPSCombatSystem.Core
                             weapon.MaxHorizontalAimDeviationDeg,
                             weapon.MaxVerticalAimDeviationDeg
                             );
+                        */
                     }
             }
         }

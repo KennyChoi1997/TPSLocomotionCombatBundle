@@ -247,6 +247,8 @@ namespace LocomotionSystem.CameraSystem
             // 1) Desired distanc camera distance (free-look vs lock-on)
             float targetDist = _isLockOn ? _lockOnDistance : distance;
 
+            Debug.Log($"[TPCamera] isLockOn={_isLockOn}, distance={distance}, targetDist={targetDist}, camLocalZ={_cam.transform.localPosition.z}", this);
+
             // Camera is placed behind the pivot along -forward
             Vector3 camDir = -pivot.forward.normalized;
             float desiredDist = targetDist;
@@ -724,6 +726,25 @@ namespace LocomotionSystem.CameraSystem
         #region Public API
 
         /// <summary>
+        /// Sets the free-look camera distance.
+        /// Used by bundle integration systems to blend into aim mode.
+        /// </summary>
+        public void SetFreeLookDistance(float newDistance)
+        {
+            distance = Mathf.Max(0.1f, newDistance);
+            Debug.Log($"[ThirdPersonCameraController] Distance: {distance}", this);
+        }
+
+        /// <summary>
+        /// Gets the current configured free-look camera distance.
+        /// </summary>
+        public float GetFreeLookDistance()
+        {
+            return distance;
+        }
+
+        /*
+        /// <summary>
         /// Allows setting lock-on target from other systems (e.g. AI, targeting manager).
         /// If lock-on is already active, this will update the indicator.
         /// </summary>
@@ -748,6 +769,7 @@ namespace LocomotionSystem.CameraSystem
                 _lockOnIndicator?.Hide();
             }
         }
+        */
 
         #endregion
     }

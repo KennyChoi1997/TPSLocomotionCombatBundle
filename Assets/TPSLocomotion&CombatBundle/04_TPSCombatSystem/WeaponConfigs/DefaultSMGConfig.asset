@@ -19,8 +19,8 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 247
-  maxHorizontalAimDeviationDeg: 0
-  maxVerticalAimDeviationDeg: 0
+  maxHorizontalAimDeviationDeg: 180
+  maxVerticalAimDeviationDeg: 180
   pelletCount: 10
   spreadAngleDeg: 6
   magazineSize: 30
