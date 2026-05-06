@@ -1,3 +1,5 @@
+using LocomotionSystem.Core;
+using LocomotionSystem.Input;
 using TPSLocomotionCombatBundle.Integration.CameraSystem;
 using UnityEngine;
 
@@ -7,18 +9,26 @@ namespace TPSLocomotionCombatBundle.Integration.Rotation
     /// Controls player rotation based on camera mode.
     /// 
     /// Responsibilities:
-    /// - In free-look: do nothing (locomotion controls rotation)
-    /// - In aim mode: rotate player to face camera forward (XZ plane)
+    /// - In free-look / lock-on: do nothing.
+    /// - In combat aim mode: disable locomotion-owned rotation.
+    /// - In combat aim mode: rotate player to face camera forward.
+    /// - In combat aim mode while backward: suppress rotation for backpedaling.
     /// </summary>
     public sealed class PlayerRotationCoordinator : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private CameraModeController cameraModeController;
+        [SerializeField] private PlayerInputReader locomotionInput;
+        [SerializeField] private PlayerLocomotion locomotion;
         [SerializeField] private Transform playerRoot;
         [SerializeField] private Transform cameraTransform;
 
         [Header("Settings")]
         [SerializeField] private float rotationSpeed = 12f;
+
+        [Header("Backpedal")]
+        [SerializeField] private bool suppressRotationWhileBAckpedaling = true;
+        [SerializeField] private float backpedalThreshold = -0.2f;
 
         private void LateUpdate()
         {
@@ -27,11 +37,39 @@ namespace TPSLocomotionCombatBundle.Integration.Rotation
                 return;
             }
 
-            if (!cameraModeController.IsAiming)
+            bool isAiming = cameraModeController.IsAiming;
+
+            // FreeLook / Lock-On / Soulslike movement:
+            // Let PLayerLocomotion own rotation.
+            locomotion?.SetAllowRotation(!isAiming);
+
+            if (!isAiming)
             {
                 return;
             }
 
+            // Combat aim + backward input:
+            // Neither locomotion nor this coordinator rotates the player.
+            if (ShouldSuppressRotation())
+            {
+                return;
+            }
+
+            RotatePlayerToCameraForward();
+        }
+
+        private bool ShouldSuppressRotation()
+        {
+            if (!suppressRotationWhileBAckpedaling || locomotionInput == null)
+            {
+                return false;
+            }
+
+            return locomotionInput.MoveInput.y < backpedalThreshold;
+        }
+
+        private void RotatePlayerToCameraForward()
+        {
             Vector3 forward = cameraTransform.forward;
             forward.y = 0f;
 
@@ -47,6 +85,12 @@ namespace TPSLocomotionCombatBundle.Integration.Rotation
                 targetRotation,
                 rotationSpeed * Time.deltaTime
                 );
+        }
+
+        private void OnDisable()
+        {
+            // Safety: restore locomotion rotation if this component is disabled.
+            locomotion?.SetAllowRotation(true);
         }
     }
 }

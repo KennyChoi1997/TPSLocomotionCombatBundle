@@ -37,6 +37,8 @@ namespace LocomotionSystem.Core
         /// </summary>
         public bool IsSprinting { get; private set; }
 
+        public bool AllowRotation {  get; private set; }
+
         /// <summary>
         /// Maximum planar speed used for animation normalization.
         /// </summary>
@@ -204,6 +206,8 @@ namespace LocomotionSystem.Core
                 _cameraTransform = Camera.main.transform;
 
             _wasGrounded = _controller.isGrounded;
+
+            AllowRotation = true;
         } 
 
         void Update()
@@ -440,6 +444,10 @@ namespace LocomotionSystem.Core
         /// </summary>
         private void HandleRotation()
         {
+            // External systems (combat aim, lock-on, etc.) can temporarilly own rotation.
+            if (!AllowRotation)
+                return;
+
             // Lock-On: rotation handled by camera (player always faces target)
             if (_isLockOn)
                 return;
@@ -483,6 +491,20 @@ namespace LocomotionSystem.Core
         public void SetLockOnState(bool value)
         {
             _isLockOn = value;
+        }
+
+        /// <summary>
+        /// Allows external systems to temporarilly take ownership of character rotation.
+        /// 
+        /// Example:
+        /// - Combat aim system
+        /// - Lock-on system
+        /// - Cinematic controller
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetAllowRotation(bool value)
+        {
+            AllowRotation = value;
         }
 
         #endregion

@@ -251,6 +251,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ce878f7bb6008541850896e222e7d14, type: 3}
       insertIndex: -1
       addedObject: {fileID: 84033179}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ce878f7bb6008541850896e222e7d14, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 84033182}
   m_SourcePrefab: {fileID: 100100000, guid: 9ce878f7bb6008541850896e222e7d14, type: 3}
 --- !u!4 &84033177 stripped
 Transform:
@@ -282,6 +285,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -833920188732764962, guid: 9ce878f7bb6008541850896e222e7d14, type: 3}
   m_PrefabInstance: {fileID: 84033176}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &84033181 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9ce878f7bb6008541850896e222e7d14, type: 3}
+  m_PrefabInstance: {fileID: 84033176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &84033182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84033178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67c4a7a482a5954ca61ff2576d16a24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 84033181}
+  cameraModeController: {fileID: 1251546191}
+  combatInputReader: {fileID: 613439930}
+  resetFireTriggerBeforeSet: 1
+  resetReloadTriggerBeforeSet: 1
 --- !u!4 &132515203 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 654436965819350200, guid: d287304bf934c7445a8d4f94d16d630a, type: 3}

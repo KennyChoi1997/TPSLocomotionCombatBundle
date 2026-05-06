@@ -323,7 +323,7 @@ namespace TPSCombatSystem.Core
                             direction = aimRay.direction;
                         }
 
-                        return aimRay.direction;
+                        return direction.normalized;
 
                         /*
                         // Clamp desired camera-based direction so the weapon cannot
