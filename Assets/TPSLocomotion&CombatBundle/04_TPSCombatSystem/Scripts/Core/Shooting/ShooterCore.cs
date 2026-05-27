@@ -324,18 +324,6 @@ namespace TPSCombatSystem.Core
                         }
 
                         return direction.normalized;
-
-                        /*
-                        // Clamp desired camera-based direction so the weapon cannot
-                        // fire outside the physically plausible muzzle cone.
-                        return ClampDirectionByYawPitch(
-                            muzzle,
-                            forwardAxis,
-                            direction.normalized, 
-                            weapon.MaxHorizontalAimDeviationDeg,
-                            weapon.MaxVerticalAimDeviationDeg
-                            );
-                        */
                     }
             }
         }

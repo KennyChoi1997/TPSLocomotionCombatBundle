@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
 using TPSCombatSystem.Core;
 using TPSCombatSystem.Interfaces;
 using TPSCombatSystem.UI;
-using TPSCombatSystem.Weapons;
 using UnityEngine;
 
 namespace TPSCombatSystem.Weapons

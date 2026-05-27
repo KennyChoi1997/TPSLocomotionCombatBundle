@@ -1,15 +1,17 @@
 using TPSCombatSystem.Input;
+using TPSCombatSystem.Weapons;
 using TPSLocomotionCombatBundle.Integration.CameraSystem;
 using UnityEngine;
 
 namespace TPSLocomotionCombatBundle.Integration.Animation
 {
     /// <summary>
-    /// Bridges bundle-level combat state to the integrated Animator Controller.
+    /// Bridges verified weapon/combat state to the integrated Animator Controller.
     /// 
     /// Responsibilities:
     /// - Sends aim state to Animator.
-    /// - Sends fire / reload triggers to Animator.
+    /// - Sends fire animation only when the active weapon actually fires.
+    /// - Sends reload animation only when the active weapon actually starts reloading.
     /// 
     /// Locomotion animation remains handled by PlayerLocomotionAnimator.
     /// </summary>
@@ -28,11 +30,17 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
         [Header("References")]
         [SerializeField] private Animator animator;
         [SerializeField] private CameraModeController cameraModeController;
-        [SerializeField] private CombatInputReader combatInputReader;
+        [SerializeField] private WeaponManager weaponManager;
 
         [Header("Options")]
         [SerializeField] private bool resetFireTriggerBeforeSet = true;
         [SerializeField] private bool resetReloadTriggerBeforeSet = true;
+
+        #endregion
+
+        #region Runtime State
+
+        private WeaponController currentWeapon;
 
         #endregion
 
@@ -46,10 +54,10 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
                 animator?.SetBool(IsAimingHash, cameraModeController.IsAiming);
             }
 
-            if (combatInputReader != null)
+            if (weaponManager != null)
             {
-                combatInputReader.FirePressed += OnFirePressed;
-                combatInputReader.ReloadPressed += OnReloadPressed;
+                weaponManager.WeaponChanged += OnWeaponChanged;
+                BindWeapon(weaponManager.CurrentWeaponController);
             }
         }
 
@@ -60,11 +68,12 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
                 cameraModeController.AimModeChanged -= OnAimModeChanged;
             }
 
-            if (combatInputReader != null)
+            if (weaponManager != null)
             {
-                combatInputReader.FirePressed -= OnFirePressed;
-                combatInputReader.ReloadPressed -= OnReloadPressed;
+                weaponManager.WeaponChanged -= OnWeaponChanged;
             }
+
+            UnbindWeapon();
         }
 
         #endregion
@@ -81,7 +90,62 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
             animator.SetBool(IsAimingHash, isAiming);
         }
 
-        private void OnFirePressed()
+        private void OnWeaponChanged(GameObject weaponObject, int weaponIndex)
+        {
+            BindWeapon(weaponManager != null ? weaponManager.CurrentWeaponController : null);
+        }
+
+        private void OnWeaponFired()
+        {
+            TriggerFireAnimation();
+        }
+
+        private void OnWeaponReloadStarted()
+        {
+            TriggerReloadAnimation();
+        }
+
+        #endregion
+
+        #region Weapon Binding
+
+        private void BindWeapon(WeaponController weapon)
+        {
+            if (currentWeapon == weapon)
+            {
+                return;
+            }
+
+            UnbindWeapon();
+
+            currentWeapon = weapon;
+
+            if (currentWeapon == null)
+            {
+                return;
+            }
+
+            currentWeapon.Fired += OnWeaponFired;
+            currentWeapon.ReloadStarted += OnWeaponReloadStarted;
+        }
+
+        private void UnbindWeapon()
+        {
+            if (currentWeapon == null)
+            {
+                return;
+            }
+
+            currentWeapon.Fired -= OnWeaponFired;
+            currentWeapon.ReloadStarted -= OnWeaponReloadStarted;
+            currentWeapon = null;
+        }
+
+        #endregion
+
+        #region Animation Trigger
+
+        private void TriggerFireAnimation()
         {
             if (animator == null)
             {
@@ -96,7 +160,7 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
             animator.SetTrigger(FireHash);
         }
 
-        private void OnReloadPressed()
+        private void TriggerReloadAnimation()
         {
             if (animator == null)
             {
