@@ -18,7 +18,7 @@ namespace TPSLocomotionCombatBundle.Integration.CameraSystem
 
         [Header("Viewport Points")]
         [SerializeField] private Vector2 freeLookViewportPoint = new Vector2(0.5f, 0.5f);
-        [SerializeField] private Vector2 aimViewportPoint = new Vector2(0.56f, 0.5f);
+        [SerializeField] private Vector2 aimViewportPoint = new Vector2(0.58f, 0.47f);
 
         private void OnEnable()
         {
