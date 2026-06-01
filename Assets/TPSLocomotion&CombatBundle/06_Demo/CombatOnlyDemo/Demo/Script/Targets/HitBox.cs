@@ -89,8 +89,11 @@ namespace TPSCombatSystem.Hit
         /// </summary>
         public bool TryApplyDamage(in DamageInfo baseInfo)
         {
+            Debug.Log($"HitBox Damage : {name}");
+
             if (_receiver == null)
             {
+                Debug.LogError($"NO RECEIVER : {name}", this);
                 return false;
             }
 

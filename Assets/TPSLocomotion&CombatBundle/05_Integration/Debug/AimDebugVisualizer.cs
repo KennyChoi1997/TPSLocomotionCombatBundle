@@ -10,6 +10,9 @@ namespace TPSLocomotionCombatBundle.Integration.Debugging
         [SerializeField] private MonoBehaviour aimProviderBehaviour; // IAimProvider
         [SerializeField] private ShooterCore shooterCore;
 
+        [Header("Aim Blocking")]
+        [SerializeField] private LayerMask aimBlockMask = ~0;
+
         [Header("Debug")]
         [SerializeField] private bool drawDebug = true;
         [SerializeField] private float debugDistance = 50f;
@@ -42,8 +45,8 @@ namespace TPSLocomotionCombatBundle.Integration.Debugging
                 aimRay,
                 out RaycastHit cameraHit,
                 weapon.MaxDistance,
-                weapon.HitMask,
-                QueryTriggerInteraction.Ignore
+                aimBlockMask,
+                QueryTriggerInteraction.Collide
                 );
 
             Vector3 aimPoint = aimHit
@@ -62,7 +65,21 @@ namespace TPSLocomotionCombatBundle.Integration.Debugging
                 QueryTriggerInteraction.Collide
                 );
 
-            Debug.DrawRay(aimRay.origin, aimRay.direction * debugDistance, Color.blue);
+            // Debug.DrawRay(aimRay.origin, aimRay.direction * debugDistance, Color.blue);
+            if (aimHit)
+            {
+                Debug.DrawRay(aimRay.origin, 
+                    cameraHit.point, 
+                    Color.blue
+                    );
+            }
+            else
+            {
+                Debug.DrawRay(aimRay.origin, 
+                    aimRay.direction * debugDistance, 
+                    Color.blue);
+            }
+
             Debug.DrawRay(fireOrigin, fireDirection * debugDistance, Color.red);
 
             DrawDebugSphere(aimPoint, sphereRadius, Color.green);

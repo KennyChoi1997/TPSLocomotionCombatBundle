@@ -18,7 +18,7 @@ MonoBehaviour:
   maxDistance: 40
   hitMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 759
   maxHorizontalAimDeviationDeg: 180
   maxVerticalAimDeviationDeg: 180
   pelletCount: 10

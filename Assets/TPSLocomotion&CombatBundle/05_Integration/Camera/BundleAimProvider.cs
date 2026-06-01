@@ -32,7 +32,7 @@ namespace TPSLocomotionCombatBundle.Integration.CameraSystem
         [SerializeField] private Transform fallbackForwardSource;
 
         [Header("Debug")]
-        [SerializeField] private bool enableDebugRay = true;
+        [SerializeField] private bool enableDebugRay = false;
         [SerializeField] private float debugRayLength = 50f;
 
         public Vector2 ViewportPoint => viewportPoint;

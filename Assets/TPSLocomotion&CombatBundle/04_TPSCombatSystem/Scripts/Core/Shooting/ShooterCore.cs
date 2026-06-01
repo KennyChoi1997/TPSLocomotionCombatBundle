@@ -63,6 +63,9 @@ namespace TPSCombatSystem.Core
         [Header("Aim State")]
         [SerializeField] private CombatInputReader combatInputReader;
 
+        [Header("Aim Blocking")]
+        [SerializeField] private LayerMask aimBlockMask = ~0;
+
         [Header("Debug")]
         [SerializeField] private bool enableDebugLog = false;
         [SerializeField] private bool drawDebugRay = true;
@@ -266,7 +269,7 @@ namespace TPSCombatSystem.Core
             setup.Damage = weapon.Damage;
             setup.Muzzle = muzzle;
             setup.Origin = muzzle.position;
-            setup.AimPoint = ResolveAimPoint(setup.AimRay, setup.MaxDistance, setup.HitMask);
+            setup.AimPoint = ResolveAimPoint(setup.AimRay, setup.MaxDistance, aimBlockMask);
 
             return true;
         }
@@ -287,11 +290,13 @@ namespace TPSCombatSystem.Core
                 out RaycastHit aimHit,
                 maxDistance,
                 hitMask,
-                QueryTriggerInteraction.Ignore))
+                QueryTriggerInteraction.Collide))
             {
+                Debug.Log($"[AimPoint] Hit: {aimHit.collider.name}, Layer: {LayerMask.LayerToName(aimHit.collider.gameObject.layer)}", aimHit.collider);
                 return aimHit.point;
             }
 
+            Debug.Log($"[ShooterCore AimPoint] NO HIT / FallbackDist={maxDistance}", this);
             return aimRay.origin + aimRay.direction * maxDistance;
         }
 
@@ -351,8 +356,13 @@ namespace TPSCombatSystem.Core
                 setup.HitMask, 
                 QueryTriggerInteraction.Collide))
             {
+                Debug.Log("NO FIRE HIT");
                 return false;
             }
+
+            Debug.Log(
+                $"FIRE HIT = {fireHit.collider.name} | Layer = {LayerMask.LayerToName(fireHit.collider.gameObject.layer)}",
+                fireHit.collider);
 
             var baseInfo = new DamageInfo(
                 setup.Damage,
