@@ -1,0 +1,31 @@
+THIRD-PARTY NOTICES
+
+This package contains third-party assets used for demonstration purposes.
+
+Modeling and Animations
+
+1. Universal Animation Library
+   https://quaternius.com/packs/universalanimationlibrary.html
+
+2. Ultimate Guns Pack
+   https://quaternius.com/packs/ultimategun.html
+
+UI
+
+1. Crosshair Pack
+   https://kenney.nl/assets/crosshair-pack
+
+Environment
+
+1. Building Kit
+   https://kenney.nl/assets/building-kit
+
+2. Day Sky HDRI 027 B
+   https://ambientcg.com/a/DaySkyHDRI027B
+
+Texture
+
+1. Prototype Texture
+   https://kenney.nl/assets/prototype-textures
+
+All third-party assets remain the property of their respective owners and are used in accordance with their licenses.
