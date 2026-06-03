@@ -24,7 +24,7 @@ namespace TPSLocomotionCombatBundle.Integration.CameraSystem
         [SerializeField] private Camera cameraSource;
 
         [Header("Ray")]
-        [Tooltip("Viewport position used generating the aim ray.")]
+        [Tooltip("Viewport position used when generating the aim ray.")]
         [SerializeField] private Vector2 viewportPoint = new Vector2(0.5f, 0.5f);
 
         [Header("Fallback")]
@@ -56,7 +56,7 @@ namespace TPSLocomotionCombatBundle.Integration.CameraSystem
 
                 if (enableDebugRay)
                 {
-                    Debug.DrawRay(ray.origin, ray.direction * debugRayLength);
+                    Debug.DrawRay(ray.origin, ray.direction * debugRayLength, Color.blue);
                 }
                 return ray;
             }
@@ -66,7 +66,7 @@ namespace TPSLocomotionCombatBundle.Integration.CameraSystem
 
             if (enableDebugRay)
             {
-                Debug.DrawRay(fallbackRay.origin, fallbackRay.direction * debugRayLength);
+                Debug.DrawRay(fallbackRay.origin, fallbackRay.direction * debugRayLength, Color.blue);
             }
 
             return fallbackRay;

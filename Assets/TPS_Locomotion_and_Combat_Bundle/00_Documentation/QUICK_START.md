@@ -3,7 +3,7 @@
 ## Requirements
 
 * Unity 6 (6000.x)
-* Built-In Render Pipeline (URP)
+* Built-In Render Pipeline
 * New Input System
 
 ---
@@ -12,7 +12,7 @@
 
 The package includes three demo scenes:
 
-### Demo_Locomotion
+### LocomotionOnlyDemo
 
 Showcases:
 
@@ -20,7 +20,7 @@ Showcases:
 * Free-look camera
 * Lock-on targeting
 
-### Demo_Combat
+### CombatOnlyDemo
 
 Showcases:
 
@@ -29,7 +29,7 @@ Showcases:
 * Weapon swapping
 * HitBox damage
 
-### Demo_CQB
+### IntegratedDemo (Demo_CQB)
 
 Showcases:
 
@@ -72,11 +72,11 @@ Showcases:
 
 For first-time users:
 
-1. Open **Demo_CQB**
+1. Open **IntegratedDemo/Demo_CQB**
 2. Press Play
 3. Test movement, aiming, shooting, and weapon swapping
 4. Review the integration setup
-5. Explore the Locomotion and Combat demo scenes separately
+5. Explore the standalone locomotion and combat demo scenes
 
 ---
 

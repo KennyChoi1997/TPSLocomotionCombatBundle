@@ -90,7 +90,7 @@ namespace TPSLocomotionCombatBundle.Integration.Animation
             animator.SetBool(IsAimingHash, isAiming);
         }
 
-        private void OnWeaponChanged(GameObject weaponObject, int weaponIndex)
+        private void OnWeaponChanged(GameObject _, int __)
         {
             BindWeapon(weaponManager != null ? weaponManager.CurrentWeaponController : null);
         }

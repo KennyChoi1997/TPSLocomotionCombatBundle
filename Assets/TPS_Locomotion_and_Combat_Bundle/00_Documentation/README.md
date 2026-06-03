@@ -2,8 +2,7 @@
 
 TPS Locomotion & Combat Bundle is a complete third-person gameplay framework for Unity 6.
 
-The package combines a third-person locomotion system, combat system, and integration layer into a single workflow, 
-allowing developers to prototype or build TPS-style projects more quickly.
+The package combines a third-person locomotion system, combat system, and integration layer into a single workflow, allowing developers to prototype or build TPS-style projects more quickly.
 
 ---
 
@@ -43,51 +42,59 @@ allowing developers to prototype or build TPS-style projects more quickly.
 ## Requirements
 
 * Unity 6 (6000.x)
-* Built-In Render Pipeline (URP)
+* Built-In Render Pipeline
 * New Input System
 
 ---
 
 ## Package Structure
 
-01_Locomotion
+### 00_Documentation
 
-* Third-person locomotion system
+* Documentation and setup guides
 
-02_Combat
+### 01_Settings
+
+* Shared Input Action assets
+
+### 02_LocomotionSystem
+
+* Third-person locomotion framework
+
+### 03_TPSCombatSystem
 
 * TPS combat framework
 
-05_Integration
+### 04_Integration
 
 * Bundle-specific integration layer
 
-Demo
+### 05_Demo
 
-* Example scenes and setup
+* Example demo scenes and prefabs
 
 ---
 
 ## Demo Scenes
 
-### Demo_Locomotion
+### LocomotionOnlyDemo
 
 Demonstrates:
 
-* Movement
+* Character movement
 * Camera control
 * Lock-on targeting
 
-### Demo_Combat
+### CombatOnlyDemo
 
 Demonstrates:
 
 * Shooting
 * Reloading
 * Weapon swapping
-* HitBox damage
+* HitBox-based damage
 
-### Demo_CQB
+### IntegratedDemo (Demo_CQB)
 
 Demonstrates:
 
@@ -95,6 +102,8 @@ Demonstrates:
 * TPS aiming
 * Weapon handling
 * Target engagement inside a CQB environment
+* Camera and player rotation integration
+* Locomotion and combat animation workflow
 
 ---
 
@@ -128,7 +137,7 @@ Demonstrates:
 
 ## Quick Start
 
-1. Open Demo_CQB.
+1. Open **IntegratedDemo/Demo_CQB**.
 2. Press Play.
 3. Move using WASD or Left Stick.
 4. Aim using Right Mouse Button or Left Trigger.
@@ -136,10 +145,21 @@ Demonstrates:
 
 ---
 
+## Documentation
+
+Additional documentation is included in the package:
+
+* QUICK_START.md
+* INTEGRATION_GUIDE.md
+* CHANGELOG.md
+* Third_Party_Notices.txt
+
+---
+
 ## Notes
 
 This package focuses on gameplay systems and integration workflow.
 
-Characters, animations, weapons, and environments included in the demo scenes are intended to demonstrate functionality and may be replaced with project-specific assets.
+Characters, animations, weapons, environments, and other demo assets are included to demonstrate functionality and may be replaced with project-specific content.
 
-Refer to QUICK_START.md and INTEGRATION_GUIDE.md for setup details.
+Refer to QUICK_START.md and INTEGRATION_GUIDE.md for setup and integration details.

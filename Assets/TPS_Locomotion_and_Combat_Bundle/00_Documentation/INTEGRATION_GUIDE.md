@@ -2,22 +2,26 @@
 
 ## Overview
 
-TPS Locomotion & Combat Bundle combines the standalone Locomotion and Combat packages into a single gameplay workflow.
+TPS Locomotion & Combat Bundle combines the Locomotion System and TPS Combat System into a unified third-person gameplay workflow.
 
 The integration layer is located inside:
 
-05_Integration
+04_Integration
 
-This layer connects movement, aiming, weapon handling, and animation systems without modifying the original locomotion or combat architecture.
+This layer connects movement, aiming, weapon handling, camera behaviour, and animation systems while keeping locomotion and combat responsibilities separated.
 
 ---
 
 ## Architecture
 
 Locomotion System
+
 ↓
+
 Integration Layer
+
 ↓
+
 Combat System
 
 The integration layer acts as a bridge between the two systems.
@@ -33,7 +37,11 @@ Responsible for switching camera behaviour between:
 * Free Look
 * Aim Mode
 
-The component adjusts camera distance and notifies other systems when the player enters or exits aim mode.
+Responsibilities:
+
+* Adjust camera distance
+* Manage aim state transitions
+* Notify dependent systems when aim mode changes
 
 ---
 
@@ -53,6 +61,30 @@ Used by:
 
 ---
 
+### BundleAimViewportController
+
+Synchronizes viewport-based aiming and crosshair positioning.
+
+Responsibilities:
+
+* Update viewport aim position
+* Support shoulder aiming offsets
+* Maintain alignment between aiming and UI
+
+---
+
+### CameraShoulderOffsetController
+
+Applies shoulder-camera positioning during aim mode.
+
+Responsibilities:
+
+* Maintain centered free-look camera behaviour
+* Shift camera position during aiming
+* Support TPS-style aiming presentation
+
+---
+
 ### PlayerRotationCoordinator
 
 Synchronizes player rotation with combat aiming.
@@ -61,7 +93,8 @@ Responsibilities:
 
 * Rotate the player toward the camera while aiming
 * Prevent unwanted rotation behaviour during locomotion
-* Maintain TPS-style character control
+* Support TPS-style aiming movement
+* Support backpedaling behaviour while aiming
 
 ---
 
@@ -98,6 +131,7 @@ Unlike the standalone Combat demo, which uses separate camera behaviour, the bun
 
 * CameraModeController
 * BundleAimProvider
+* CameraShoulderOffsetController
 
 to provide a unified TPS workflow.
 
@@ -107,11 +141,11 @@ to provide a unified TPS workflow.
 
 ShooterCore receives aiming information through:
 
-BundleAimProvider
+* BundleAimProvider
 
 and weapon information through:
 
-WeaponManager
+* WeaponManager
 
 The combat system remains modular and independent from locomotion logic.
 
@@ -119,7 +153,7 @@ The combat system remains modular and independent from locomotion logic.
 
 ## Demo Scene
 
-### Demo_CQB
+### IntegratedDemo (Demo_CQB)
 
 The CQB demo scene demonstrates:
 
@@ -130,6 +164,8 @@ The CQB demo scene demonstrates:
 * Reloading
 * Weapon swapping
 * HitBox damage
+* Player rotation integration
+* Locomotion and combat animation integration
 
 This scene is intended to showcase the complete integrated workflow.
 
@@ -139,9 +175,9 @@ This scene is intended to showcase the complete integrated workflow.
 
 Recommended layers:
 
-Player
-Obstacle
-Target
+* Player
+* Obstacle
+* Target
 
 ### Obstacle
 
@@ -166,6 +202,16 @@ Used for:
 
 The integration layer is designed specifically for the systems included in this bundle.
 
-Developers integrating other locomotion or combat solutions may need additional customization.
+Developers integrating other locomotion or combat solutions may require additional customization.
 
-The standalone Locomotion and Combat packages remain modular and can be used independently if preferred.
+The included locomotion and combat systems remain modular and may also be used independently if desired.
+
+
+### Bundle Version Notes
+
+To support the integrated workflow, some components included in this bundle may contain minor adjustments or integration-specific tuning compared to the standalone Locomotion System and TPS Combat System packages.
+
+These changes are intended to improve compatibility, usability, and overall integration within the bundle environment.
+
+Standalone packages continue to be maintained independently and may receive updates separately from the bundle version.
+
